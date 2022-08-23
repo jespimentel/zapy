@@ -138,6 +138,7 @@ for mensagem in mensagens:
 
 # Criação do dataframe com as mensagens extraídas
 df = pd.DataFrame(lista_msg, columns=features)
+print(f'Foram encontradas {len(df)} mensagens.')
 
 # Identificação do alvo
 criterio = df.Message_Style != 'individual'
@@ -146,11 +147,11 @@ alvo = alvo.to_string().split()[0]
 
 # Cálculos
 # Mensagens invidivuais enviadas por tipo
-criterio = (df.Message_Style == 'individual') # & (df.Sender == alvo)
+criterio = (df.Message_Style == 'individual')
 qtd_msg_env = df[criterio].groupby(['Recipients', 'Type'])['Type'].count()
 
 # Mensagens individuais recebidas por tipo
-criterio = (df.Message_Style == 'individual') # & (df.Sender != alvo) 
+criterio = (df.Message_Style == 'individual')
 qtd_msg_receb = df[criterio].groupby(['Sender', 'Type'])['Type'].count()
 
 # Mensagens individuais enviadas por tipo após o 'unstack' e totalização
@@ -178,7 +179,6 @@ for i, cel in recipients_grupos.iteritems():
     cels_grupos.append(num)
 cels_grupos_dict = {}
 cels_unicos_grupos = set(cels_grupos)
-len(cels_unicos_grupos)
 for n in cels_unicos_grupos:
   cels_grupos_dict[n] = cels_grupos.count(n) 
 
@@ -189,6 +189,17 @@ df_grupos = pd.DataFrame.from_dict(cels_grupos_dict, orient='index', columns=['O
 df_com_ips = df[df['Sender_Ip'].notna()]
 ips = df_com_ips.Sender_Ip.value_counts()
 ips_lista = ips.index.to_list()
+
+print(f'Foram encontrados {len(ips_lista)} IPs diversos.')
+resposta = input('Deseja restringir a consulta à API? <s/n>')
+if resposta.lower() == 's':
+  cond = True
+  while (cond):
+    num = input ('Qtde. consultas: ')
+    if num.isdigit() and int(num)>0 and int(num)<=len(ips_lista):
+      cond = False
+      num = int(num)
+      ips_lista = ips_lista[:num]
 
 # Consulta à API da IPAPI
 # Cria a lista com as informações de IP obtidas nas requisições
