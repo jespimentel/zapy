@@ -19,7 +19,7 @@ Podem ser gerados gráficos para facilitar a análise do caso.
 
 ## Instalação (no Windows)
 
-1. Crie a pasta para a aplicação
+1. Crie a pasta para a aplicação e nela copie o arquivo "app.py".
 2. Navegue até a pasta e crie o ambiente virtual
 ```
 python -m venv env  
