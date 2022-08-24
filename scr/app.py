@@ -7,7 +7,7 @@
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-#copies of the Software, and to permit persons to whom the Software is
+# copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
 #
 # The above copyright notice and this permission notice shall be included in all
@@ -38,7 +38,7 @@ from email.parser import BytesParser
 def obtem_dados_env():
     """Lê chave-valores do arquivo .env"""
     load_dotenv()
-    return os.environ['orgao'], os.environ['chave']
+    return os.environ['chave']
 
 def faz_saudacao(orgao):
   """Lê arquivo .env e saúda o usuário"""
@@ -62,8 +62,8 @@ def verifica_pasta (caminho_para_arquivos):
   return caminho_de_gravacao
 
 # Incício do programa
-orgao, chave = obtem_dados_env()
-faz_saudacao(orgao)
+chave = obtem_dados_env()
+faz_saudacao('Promotoria de Justiça de Piracicaba')
 caminho_para_arquivos = seleciona_pasta()
 path = Path(caminho_para_arquivos)
 eml_files = list(path.glob('*.eml'))
