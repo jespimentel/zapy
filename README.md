@@ -1,5 +1,5 @@
-# zapy, by Pimentel
-Ferramenta forense para a organização de metadados do WhatsApp
+# zapy
+## Ferramenta forense para a organização de metadados do WhatsApp
 
 ## Introdução
 
