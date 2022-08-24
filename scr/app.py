@@ -21,6 +21,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 #==========================================================================
+#
+# url = 'https://github.com/jespimentel/zapy'
+# Versão 1.0.dev1
+#
+#==========================================================================
 import os, re, sys
 import requests, json
 import tkinter as tk
@@ -204,6 +209,7 @@ if resposta.lower() == 's':
 # Consulta à API da IPAPI
 # Cria a lista com as informações de IP obtidas nas requisições
 # Documentação da API: https://ipapi.com/quickstart 
+# Para uma versão futura: criar função para a consulta à API
 operadoras = []
 for ip in ips_lista:
   elemento = {}
