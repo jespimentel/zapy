@@ -146,7 +146,7 @@ df = pd.DataFrame(lista_msg, columns=features)
 print(f'Foram encontradas {len(df)} mensagens.')
 
 # Identificação do alvo
-criterio = df.Message_Style != 'individual'
+criterio = (df.Message_Style == 'individual')&(df.Sender_Ip.notnull())
 alvo = df[criterio]['Sender'].value_counts() 
 alvo = alvo.to_string().split()[0]
 
